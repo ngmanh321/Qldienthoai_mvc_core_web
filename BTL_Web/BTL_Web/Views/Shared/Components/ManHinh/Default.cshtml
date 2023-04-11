@@ -1,0 +1,13 @@
+﻿
+
+@foreach (var item in Model)
+{
+
+
+	<li class="p-b-6">
+		<a href="#" class="filter-link stext-106 trans-04">
+			<a asp-controller="Home" asp-action="SanPhamTheoMh" asp-route-mamanhinh="@item.Mamanhinh"> @item.Tenmanhinh </a>
+		</a>
+	</li>
+
+}

@@ -1,0 +1,103 @@
+﻿
+@{
+    ViewData["Title"] = "DanhMucDonHang";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+@using BTL_Web.Models ;
+@using X.PagedList.Mvc.Core;
+@model X.PagedList.IPagedList<Chitietdonhang>
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<head>
+
+</head>
+<p> @TempData["Message"] </p>
+<table class="table table-bordered">
+    
+    <thead>
+        <tr class="table-info">
+            <th>
+                <p>Ma Don Hang</p>
+            </th>
+            <th>
+                <p>Ma SP</p>
+            </th>
+            <th>
+                <p>Ten SP</p>
+            </th>
+            <th>
+                <p>SL</p>
+            </th>
+            <th>
+                <p>Ten Khach </p>
+            </th>
+            <th>
+                <p>Dia chi</p>
+            </th>
+            <th>
+                <p>SDT</p>
+            </th>
+            <th>
+                <p>Ten TK</p>
+            </th>
+            <th>
+                <p>Don Gia</p>
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="table-success">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Madon)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Masp)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tensp)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Soluong)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tenkhach)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Diachi)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sdt)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenTK)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Dongia)
+                </td>
+
+
+                <td>
+                    <a asp-action="HoanThanhDonHang" asp-route-madon="@item.Madon" asp-route-masp="@item.Masp">Hoan Thanh</a> |
+                    <a asp-action="LoiDonHang" asp-route-madon="@item.Madon" asp-route-masp="@item.Masp">Huy(Loi)</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@Html.PagedListPager(Model,page => Url.Action("DanhMucDonHang", new {page=page}),new X.PagedList.Web.Common.PagedListRenderOptions(){
+	LiElementClasses = new List<String> {"page-item"},
+	PageClasses = new List<String> {"page-link"}
+})
+

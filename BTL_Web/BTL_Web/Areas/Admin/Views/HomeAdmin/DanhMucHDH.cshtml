@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewData["Title"] = "DanhMucHDH";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<button><a asp-action="ThemHDH">Create New</a></button>
+
+@using BTL_Web.Models ;
+@using X.PagedList.Mvc.Core;
+@model X.PagedList.IPagedList<Hedieuhanh>
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+
+<p> @TempData["Message"] </p>
+
+<table class="table table-bordered">
+    <thead>
+        <tr class="table-info">
+            <th>
+                <p>Ma HDH</p>
+            </th>
+            <th>
+                <p>Ten HDH</p>
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="table-success">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Mahdh)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tenhdh)
+                </td>
+
+                <td>
+                    <a asp-action="SuaHDH" asp-route-mahdh="@item.Mahdh">Edit</a> |
+                    <a asp-action="XoaHDH" asp-route-mahdh="@item.Mahdh">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@Html.PagedListPager(Model,page => Url.Action("DanhMucHDH", new {page=page}),new X.PagedList.Web.Common.PagedListRenderOptions(){
+	LiElementClasses = new List<String> {"page-item"},
+	PageClasses = new List<String> {"page-link"}
+})
+

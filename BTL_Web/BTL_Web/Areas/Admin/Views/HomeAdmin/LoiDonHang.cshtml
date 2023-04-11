@@ -1,0 +1,122 @@
+﻿@model BTL_Web.Models.Chitietdonhang
+
+@{
+    ViewData["Title"] = "LoiDonHang";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+
+<hr />
+<h1>Xac Nhan Don De Huy</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <form>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Madon" />
+            <input type="hidden" asp-for="Masp" />
+            <div class="form-group">
+                <label asp-for="Soluong" class="control-label"></label>
+                <input asp-for="Soluong" id="soluong" class="form-control" />
+                <span asp-validation-for="Soluong" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Dongia" class="control-label"></label>
+                <input asp-for="Dongia" id="dongia" class="form-control" />
+                <span asp-validation-for="Dongia" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tenkhach" class="control-label"></label>
+                <input asp-for="Tenkhach" id="tenkhach" class="form-control" />
+                <span asp-validation-for="Tenkhach" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Diachi" class="control-label"></label>
+                <input asp-for="Diachi" id="diachi" class="form-control" />
+                <span asp-validation-for="Diachi" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Sdt" class="control-label"></label>
+                <input asp-for="Sdt" id="sdt" class="form-control" />
+                <span asp-validation-for="Sdt" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TenTK" class="control-label"></label>
+                <input asp-for="TenTK" itemid="tentk" id="tentk" class="form-control" />
+                <span asp-validation-for="TenTK" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tensp" class="control-label"></label>
+                <input asp-for="Tensp" id="tensp" class="form-control" />
+                <span asp-validation-for="Tensp" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input onclick="loidonhang()" value="Save" class="btn btn-primary pointer" />
+            </div>
+        </form>
+
+    </div>
+</div>
+
+
+
+<script>
+
+
+
+    function loidonhang() {
+
+        let formData = {
+            Madon: @Model.Madon,
+            Masp: @Model.Masp,
+            Soluong: $("#soluong").val(),
+            Dongia: $("#dongia").val(),
+            Tenkhach: $("#tenkhach").val(),
+            Diachi: $("#diachi").val(),
+            Sdt: $("#sdt").val(),
+            TenTk: $("#tentk").val(),
+            Tensp: $("#tensp").val(),
+            Trangthai: "Loi (Huy) Don",
+
+        }
+        $.ajax({
+            type: "POST",
+            url: "https://localhost:7281/api/api/",
+            data: JSON.stringify(formData),
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: function (response) {
+                swal("Thong Bao!", "Đơn hàng đã được huy hoàn tất ", "success");
+                Delete();
+
+            },
+            error: function (request, status, error) {
+                alert(request.responseText);
+            },
+        });
+    }
+
+
+
+
+    function Delete() {
+
+        $.ajax({
+            type: "DELETE",
+            url: "https://localhost:7281/api/api2/" + @Model.Madon + '/' + @Model.Masp,
+            dataType: "json",
+            success: function (response) {
+
+            },
+            error: function (request, status, error) {
+                alert(request.responseText);
+            }
+        });
+    }
+
+
+</script>
+
+

@@ -1,0 +1,128 @@
+﻿@model BTL_Web.Models.Chitietdonhang
+
+@{
+    ViewData["Title"] = "DonHang";
+    Layout = "~/Views/Shared/_LayoutShop.cshtml";
+}
+@{
+	var tk = Context.Session.GetString("DN");
+}
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<head>
+  <script>
+    window.onload = function() {
+			ShowDonHang();
+    };
+  </script>
+</head>
+
+		<div class="wrap-table-shopping-cart">
+			<table class="table-shopping-cart">
+				<tbody id="display">
+					<tr class="table_head">
+						<th class="column-1" > Ma Don Hang </th>
+						<th class="column-3" > San Pham </th>
+						<th class="column-3" > So luong </th>
+						<th class="column-3" > Ten Khach </th>
+						<th class="column-3" > Dia Chi </th>
+						<th class="column-3" > SDT </th>
+						<th class="column-3" > Total </th>
+					</tr>
+
+
+				</tbody>
+			</table>
+		</div>
+
+		<div class="flex-w flex-sb-m bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm">
+			<div class="flex-w flex-m m-r-20 m-tb-5">
+				<input class="stext-104 cl2 plh4 size-117 bor13 p-lr-20 m-r-10 m-tb-5" type="text" id="coupon" placeholder="Coupon Code" value="@tk" >
+
+				<div class="flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5">
+				<a asp-controller="Home" asp-action="LichSuDonHang"> Lich Su Don Hang </a>	
+				</div>
+			</div>
+
+			<div class="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10">
+				Update Cart
+			</div>
+			<div class="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10">
+				Delete Cart
+			</div>
+		</div>
+
+
+
+<script type="text/javascript">
+
+	function ShowDonHang() {
+
+		var inputValue = $('#coupon').val();
+		var str ='' + `
+					<tr class="table_head">
+						<th class="column-1" > Ma Don Hang </th>
+						<th class="column-3" > San Pham </th>
+						<th class="column-3" > So luong </th>
+						<th class="column-3" > Ten Khach </th>
+						<th class="column-3" > Dia Chi </th>
+						<th class="column-3" > SDT </th>
+						<th class="column-3" > Total </th>
+						<th class="column-3" > Trang Thai </th>
+
+					</tr> `
+		$.ajax({
+			type: 'GET',
+			url: 'https://localhost:7281/api/api2/' + inputValue,
+			dataType: 'json',
+			success: function (data) {
+				$.each(data, function (key, val) {
+					str += `
+						<tr  class="table_row">
+							<td class="column-1">${val.madon}</td>
+							<td class="column-3"><a href="https://localhost:7281/Home/ChiTietSanPham?masp=${val.masp}">${val.tensp}</a></td>
+							<td class="column-3">${val.soluong}</td>
+							<td class="column-3">${val.tenkhach}</td>
+							<td class="column-3">${val.diachi}</td>
+							<td class="column-3">${val.sdt}</td>
+							<td class="column-3">${val.dongia}</td>
+							<td class="column-3">Da Xac Nhan</td>
+
+							<td class="column-3">
+									<button><a style="pointer" onclick="Delete('${val.madon}' ,'${val.masp}')">Delete</a></button>
+							</td>
+						</tr>
+							`
+
+
+				});
+				$('#display').html(str);
+			},
+
+			Error: function (xhr) {
+				alert(xhr.resposeText)
+			},
+
+		});
+	}
+
+    function Delete(madon,masp) {
+
+        $.ajax({
+            type: "DELETE",
+            url: "https://localhost:7281/api/api2/" + madon + '/' + masp,
+            dataType: "json",
+            success: function (response) {
+				swal("Xin chúc mừng!", "Đơn hàng đã được xoa hoàn tất ", "success");
+				location.reload();
+
+            },
+            error: function (request, status, error) {
+                alert(request.responseText);
+            }
+        });
+    }
+
+
+
+</script>

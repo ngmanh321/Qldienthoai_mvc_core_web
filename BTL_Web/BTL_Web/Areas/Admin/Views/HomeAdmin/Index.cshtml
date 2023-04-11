@@ -1,0 +1,195 @@
+﻿@model IEnumerable<BTL_Web.Models.Sanpham>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+
+	<!-- Banner -->
+	<div class="sec-banner bg0 p-t-80 p-b-50">
+		<div class="container">
+			<div class="row">
+				
+				<div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
+					<!-- Block1 -->
+					<div class="block1 wrap-pic-w">
+						<img src="../../HinhanhSP/ql1.png" alt="IMG-BANNER">
+
+					<a asp-area="admin" asp-controller="HomeAdmin" asp-action="DanhMucSanPham" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+							<div class="block1-txt-child1 flex-col-l">
+								<span class="block1-name ltext-102 trans-04 p-b-8">
+									QUAN LY SAN PHAM
+								</span>
+
+								<span class="block1-info stext-102 trans-04">
+									ADMIN
+								</span>
+							</div>
+
+							<div class="block1-txt-child2 p-b-4 trans-05">
+								<div class="block1-link stext-101 cl0 trans-09">
+									Shop Now
+								</div>
+							</div>
+						</a>
+					</div>
+				</div>
+
+				<div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
+					<!-- Block1 -->
+					<div class="block1 wrap-pic-w">
+						<img src="../../HinhanhSP/ql3.jpg" alt="IMG-BANNER">
+
+					<a asp-area="admin" asp-controller="HomeAdmin" asp-action="DanhMucHangSX" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+							<div class="block1-txt-child1 flex-col-l">
+								<span class="block1-name ltext-102 trans-04 p-b-8">
+									QUAN LY HANG SAN XUAT
+								</span>
+
+								<span class="block1-info stext-102 trans-04">
+									ADMIN
+								</span>
+							</div>
+
+							<div class="block1-txt-child2 p-b-4 trans-05">
+								<div class="block1-link stext-101 cl0 trans-09">
+									Shop Now
+								</div>
+							</div>
+						</a>
+					</div>
+				</div>
+
+				<div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
+				<!-- Block1 -->
+				<div class="block1 wrap-pic-w">
+					<img src="../../HinhanhSP/ql2.jpg" alt="IMG-BANNER">
+
+					<a asp-area="admin" asp-controller="HomeAdmin" asp-action="DanhMucHDH" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+						<div class="block1-txt-child1 flex-col-l">
+							<span class="block1-name ltext-102 trans-04 p-b-8">
+								QUAN LY HDH
+							</span>
+
+							<span class="block1-info stext-102 trans-04">
+								ADMIN
+							</span>
+						</div>
+
+						<div class="block1-txt-child2 p-b-4 trans-05">
+							<div class="block1-link stext-101 cl0 trans-09">
+								Shop Now
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+
+				<div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
+					<!-- Block1 -->
+					<div class="block1 wrap-pic-w">
+					<img src="../../HinhanhSP/ql3.jpg" alt="IMG-BANNER">
+
+						<a asp-area="admin" asp-controller="HomeAdmin" asp-action="DanhMucDonHang" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+							<div class="block1-txt-child1 flex-col-l">
+								<span class="block1-name ltext-102 trans-04 p-b-8">
+									QUAN LY DON HANG
+								</span>
+
+								<span class="block1-info stext-102 trans-04">
+									ADMIN
+								</span>
+							</div>
+
+							<div class="block1-txt-child2 p-b-4 trans-05">
+								<div class="block1-link stext-101 cl0 trans-09">
+									Shop Now
+								</div>
+							</div>
+						</a>
+					</div>
+				</div>
+
+				<div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
+					<!-- Block1 -->
+					<div class="block1 wrap-pic-w">
+						<img src="../../HinhanhSP/ql1.png" alt="IMG-BANNER">
+
+					<a asp-area="admin" asp-controller="HomeAdmin" asp-action="LichSuDonHang" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+							<div class="block1-txt-child1 flex-col-l">
+								<span class="block1-name ltext-102 trans-04 p-b-8">
+									LICH SU DON HANG
+								</span>
+
+								<span class="block1-info stext-102 trans-04">
+									ADMIN
+								</span>
+							</div>
+
+							<div class="block1-txt-child2 p-b-4 trans-05">
+								<div class="block1-link stext-101 cl0 trans-09">
+									Shop Now
+								</div>
+							</div>
+						</a>
+					</div>
+				</div>
+
+				<div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
+                <!-- Block1 -->
+                <div class="block1 wrap-pic-w">
+                    <img src="../../HinhanhSP/ql2.jpg" alt="IMG-BANNER">
+
+                    <a asp-area="admin" asp-controller="HomeAdmin" asp-action="DanhMucTaiKhoan" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+                        <div class="block1-txt-child1 flex-col-l">
+                            <span class="block1-name ltext-102 trans-04 p-b-8">
+                                QUAN LY TAI KHOAN
+                            </span>
+
+                            <span class="block1-info stext-102 trans-04">
+                                ADMIN
+                            </span>
+                        </div>
+
+                        <div class="block1-txt-child2 p-b-4 trans-05">
+                            <div class="block1-link stext-101 cl0 trans-09">
+                                Shop Now
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+				<div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
+					<!-- Block1 -->
+					<div class="block1 wrap-pic-w">
+						<img src="../../HinhanhSP/ql3.jpg" alt="IMG-BANNER">
+
+					<a asp-area="admin" asp-controller="HomeAdmin" asp-action="DanhMucManHinh" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+							<div class="block1-txt-child1 flex-col-l">
+								<span class="block1-name ltext-102 trans-04 p-b-8">
+									QUAN LY MAN HINH 
+								</span>
+
+								<span class="block1-info stext-102 trans-04">
+									ADMIN
+								</span>
+							</div>
+
+							<div class="block1-txt-child2 p-b-4 trans-05">
+								<div class="block1-link stext-101 cl0 trans-09">
+									Shop Now
+								</div>
+							</div>
+						</a>
+					</div>
+				</div>
+
+
+
+			</div>
+		</div>
+	</div>

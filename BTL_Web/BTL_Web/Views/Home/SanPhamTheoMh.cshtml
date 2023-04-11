@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewData["Title"] = "SanPhamTheoMh";
+    Layout = "~/Views/Shared/_LayoutShop.cshtml";
+}
+
+@using X.PagedList.Mvc.Core;
+@model X.PagedList.IPagedList<Sanpham>
+
+
+@await Html.PartialAsync("PartialFilter")
+
+
+<div id="displayProducts" class="row isotope-grid">
+	@foreach (var item in Model)
+	{
+		@await Html.PartialAsync("PartialSanPham" , item)
+
+
+	}
+</div>
+
+
+
+<div class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 ">
+	@Html.PagedListPager(Model , page => Url.Action("SanPhamTheoMh" , new{page = page , mahang = ViewBag.mahang } ))
+</div>
